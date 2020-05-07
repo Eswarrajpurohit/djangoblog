@@ -1,0 +1,30 @@
+{% extends 'article/basic.html' %}
+
+{% block css %}
+  body{
+    color:white;
+  }
+
+  .site-form{
+    padding:30px;
+    border: 1px solid #00dba0;
+  }
+
+  .site-form input,.site-form textarea{
+    display:block;
+  }
+
+{% endblock %}
+
+
+{% block content %}
+<div class="container my-5 p-5 ">
+
+<form class="site-form " action="{% url 'signup' %}" method="post">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit">
+</form>
+
+</div>
+{% endblock %}

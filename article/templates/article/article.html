@@ -1,0 +1,41 @@
+{% extends 'article/basic.html' %}
+
+{% load static %}
+
+{% block css %}
+
+body{
+        
+  background-image: url({%static 'tree.webp'%});
+  background-repeat: no-repeat;
+  background-size: cover;
+  color:white
+}
+{% endblock %}
+
+
+{% block content %}
+    
+<div class="container">
+    <div class="row my-5">
+        
+        <div class="col-md-4">
+            <img src="/media/{{context.thumbnail}}" class="rounded-pill" ></img>
+            
+            <div class="row align-middle px-5">
+                <button class="btn btn-primary cartButton my-5 mx-4 ">Like</button>
+                <button class="btn btn-primary cartButton my-5 mx-2">Dislike</button>
+            </div>
+
+        </div>
+    
+        <div class="col-md-8">
+            <h1>{{context.title}}</h1>
+            <h5>{{context.body}}</h2>
+            <br>
+            <h5> <strong>Author:</strong> {{context.author}}</h5>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

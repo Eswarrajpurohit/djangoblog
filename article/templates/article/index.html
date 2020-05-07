@@ -1,0 +1,28 @@
+{% extends 'article/basic.html' %}
+
+{% load static %}
+
+
+
+{% block content %}
+
+
+<div class='container'>
+<div class="row">
+{% for c in context %}
+
+  <div class="card my-3 ml-4 round-circle" style="width: 18rem;">
+    <img src='/media/{{c.thumbnail}}'height =200px class="card-img-top" alt={{c.thumbnail}} >
+    <div class="card-body">
+      <h5 class="card-title">{{c.title}}</h5>
+      <p class="card-text">{{c.body |slice:":150" }}...</p>
+      <a href="{% url 'content' aid=c.id  %}" class="btn btn-primary">Read more</a>
+    </div>
+  </div>
+
+{% endfor %}
+</div>
+</div>
+
+
+{% endblock %}

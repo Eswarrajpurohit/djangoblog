@@ -1,0 +1,31 @@
+{% extends 'article/basic.html' %}
+
+{% block css %}
+  body{
+    color:white;
+  }
+
+  .site-form{
+    padding:30px;
+    border: 1px solid #00dba0;
+  }
+
+  .site-form input,.site-form textarea{
+    display:block;
+  }
+
+{% endblock %}
+
+
+{% block content %}
+<div class="container my-5">
+<form class="site-form" action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    {{form}}
+    {% if request.GET.next %}
+      <input type="hidden" name="next" value="{{request.GET.next}}">
+    {% endif %}
+    <input class="my-4" type="submit">
+</form>
+</div>
+{% endblock %}
