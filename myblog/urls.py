@@ -9,6 +9,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^',include('article.urls')),
     url(r'^accounts/',include('accounts.urls')),
+    url(r'^api/',include('api.urls')),
 
 ]
 
