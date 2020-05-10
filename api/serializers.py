@@ -3,6 +3,10 @@ from article.models import content
  
 
 class contentSerializer(serializers.ModelSerializer):
+    
+    thumbnail = serializers.ImageField(use_url=True)
+
     class Meta:
+    
         model = content
-        fields ="__all__"
+        fields =('id','title','body','thumbnail','publishedDate','author')
