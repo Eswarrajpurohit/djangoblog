@@ -4,5 +4,6 @@ from django.conf.urls import url
 
 
 urlpatterns = [
-    url(r'^$',views.api,name='api'),    
+    url(r'^$',views.api,name='api'),
+    url(r'^apilogin/$',views.apilogin,name='apilogin')    
 ]
