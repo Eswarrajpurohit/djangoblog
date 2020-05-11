@@ -10,4 +10,4 @@ def api(request):
     articles = content.objects.all()
     serial = contentSerializer(articles,many=True)
 
-    return Response(serial.data)
+    return Response(serial.data,status=200)
