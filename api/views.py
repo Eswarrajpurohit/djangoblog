@@ -21,9 +21,6 @@ def api(request):
     articles = content.objects.all()
     serial = contentSerializer(articles,many=True)
 
-<<<<<<< HEAD
-    return Response(serial.data,status=200)
-=======
     return Response(serial.data,status=201)
 
 
@@ -43,4 +40,3 @@ def apilogin(request):
     token, _ = Token.objects.get_or_create(user=user)
     return Response({'token': token.key},
                     status=HTTP_200_OK)
->>>>>>> f5d59a5b9d74ed0d5b63026333a0d1af53638173
