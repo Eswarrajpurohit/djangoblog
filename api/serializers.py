@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from article.models import content
-
+from django.contrib.auth.models import User
 
 class contentSerializer(serializers.ModelSerializer):
 
@@ -9,4 +9,4 @@ class contentSerializer(serializers.ModelSerializer):
     class Meta:
 
         model = content
-        fields =('id','title','body','thumbnail','publishedDate','author')
+        fields ="__all__"

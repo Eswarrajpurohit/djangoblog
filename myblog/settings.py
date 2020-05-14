@@ -40,8 +40,7 @@ INSTALLED_APPS = [
     'article',
     'accounts',
     'rest_framework',
-    'api',
-    'rest_framework.authtoken'
+    'api'
 ]
 
 MIDDLEWARE = [
@@ -132,4 +131,3 @@ STATIC_ROOT = os.path.join(BASE_DIR,'assets')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
-
