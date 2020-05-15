@@ -8,5 +8,7 @@ urlpatterns = [
     #url(r'^$',views.api,name='api'),
     url(r'^$',views.api,name='api'),
     #path('detail/<str:pk>/',views.apidetail,name='apidetail'),
-    path('test/',views.apitest,name='apicreate')
+    path('apilogin/',views.apilogin,name='apilogin'),
+    path('apisignup/',views.apisignup,name='apisignup'),
+    path('apicreate/',views.FileView.as_view(),name='apicreate')
 ]

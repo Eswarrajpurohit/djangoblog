@@ -6,9 +6,10 @@ from article.models import content
 
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login
+from django.contrib.auth.forms import UserCreationForm
+from rest_framework.parsers import MultiPartParser,FormParser
 
 from rest_framework.views import APIView
-from rest_framework.parsers import FileUploadParser
 from rest_framework import status
 
 
@@ -31,7 +32,7 @@ def apidetail(request,pk):
 
 
 @api_view(['POST'])
-def apitest(request):
+def apilogin(request):
     get = request.body
     try:
         uname = request.data["username"]
@@ -42,3 +43,28 @@ def apitest(request):
     except:
         return Response({"Error":"Incorrect username or password","req":get},status=401)
 
+
+@api_view(['POST'])
+def apisignup(request):
+    username = request.data["username"]
+    password1 = request.data["password1"]
+    password2 = request.data["password2"]
+    if password1 == password2:
+        if User.objects.filter(username=username).exists():
+            return Response({"message":"Username already taken"})
+        user = User.objects.create_user(username=username,password=password1)
+        user.save()    
+        return Response({"message":"User created"},status=201)
+    else:
+        return Response({"Error":"password is in correct"},status=401)
+
+
+class FileView(APIView):
+  parser_classes = (MultiPartParser, FormParser)
+  def post(self, request, *args, **kwargs):
+    file_serializer = contentSerializer(data=request.data)
+    if file_serializer.is_valid():
+      file_serializer.save()
+      return Response(file_serializer.data, status=status.HTTP_201_CREATED)
+    else:
+      return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
