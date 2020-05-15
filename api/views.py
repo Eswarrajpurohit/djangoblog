@@ -7,7 +7,7 @@ from article.models import content
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login
 
-from rest_framework.views import APIView 
+from rest_framework.views import APIView
 from rest_framework.parsers import FileUploadParser
 from rest_framework import status
 
@@ -32,10 +32,13 @@ def apidetail(request,pk):
 
 @api_view(['POST'])
 def apitest(request):
-    uname = request.data["username"]
-    password = request.data["password"]
-    user = authenticate(request,username = uname,password=password)
-    if user is not None:
-        return Response({"message":"Login sucessful"},status=201)
-    return Response({"Error":"Incorrect username or password"},status=401)
+    get = request.body
+    try:
+        uname = request.data["username"]
+        password = request.data["password"]
+        user = authenticate(request,username = uname,password=password)
+        if user is not None:
+            return Response({"message":"Login sucessful"},status=201)
+    except:
+        return Response({"Error":"Incorrect username or password","req":get},status=401)
 
