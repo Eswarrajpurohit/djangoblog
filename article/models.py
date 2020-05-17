@@ -8,6 +8,7 @@ class content(models.Model):
     thumbnail = models.ImageField(upload_to='pics')
     publishedDate = models.DateField(auto_now_add=True)
     author = models.ForeignKey(User,default=None,on_delete=models.CASCADE)
+    like = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title

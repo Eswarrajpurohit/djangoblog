@@ -39,9 +39,9 @@ def apilogin(request):
         password = request.data["password"]
         user = authenticate(request,username = uname,password=password)
         if user is not None:
-            return Response({"message":"Login sucessful"},status=201)
-    except:
-        return Response({"Error":"Incorrect username or password","req":get},status=401)
+            return Response({"message":"Login sucessful","id":user.id},status=201)
+    except Exception as e:
+        return Response({"Error":"Incorrect username or password",},status=401)
 
 
 @api_view(['POST'])
@@ -68,3 +68,22 @@ class FileView(APIView):
       return Response(file_serializer.data, status=status.HTTP_201_CREATED)
     else:
       return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+def apilike(request):
+    id=request.data["id"]
+    article = content.objects.get(id=id)
+    if request.data["action"]=="1":
+        like =article.like
+        like = like +1
+        article.like = like
+        article.save()
+        return Response({"like":like},status=201)
+
+    elif request.data["action"]=="0":
+        like =article.like
+        like = like-1
+        article.like = like
+        article.save()
+        return Response({"like":like},status=201)
+    

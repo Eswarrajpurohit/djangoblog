@@ -22,9 +22,10 @@ body{
         <div class="col-md-4">
             <img src="/media/{{context.thumbnail}}" class="rounded-pill img-thumbnail" ></img>
 
-            <div class="row align-middle px-5">
-                <button class="btn btn-primary cartButton my-5 mx-4 ">Like</button>
-                <button class="btn btn-primary cartButton my-5 mx-2">Dislike</button>
+            <div class="row align-middle px-5 ml-4">
+                <a href="{% url 'likes' aid=context.id  action=1 %}" class="btn btn-primary my-5 mx-2"><i class="far fa-thumbs-up"></i></a>
+                <span class="mt-5 pt-2 px-2" >{{context.like}}</span>
+                <a href="{% url 'likes' aid=context.id  action=0 %}" class="btn btn-primary my-5 mx-2"><i class="far fa-thumbs-down"></i></a>
             </div>
 
         </div>

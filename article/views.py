@@ -3,6 +3,7 @@ from django.http import HttpResponse,request
 from .models import content
 from django.contrib.auth.decorators import login_required
 from . import forms
+from .models import content
 
 # Create your views here.
 def home(request):
@@ -27,3 +28,20 @@ def creat_article(request):
     else:
         form = forms.createArticle()
         return render(request,'article/create.html',{'form':form})
+
+    
+def like(request,aid,action):
+
+    article = content.objects.get(id=aid)
+    if action==1:
+        like =article.like
+        like = like +1
+        article.like = like
+        article.save()
+        return redirect('content',aid=aid)
+    elif action==0:
+        like =article.like
+        like = like-1
+        article.like = like
+        article.save()
+        return redirect('content',aid=aid)
