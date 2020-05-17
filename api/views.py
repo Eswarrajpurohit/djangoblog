@@ -53,7 +53,7 @@ def apisignup(request):
         if User.objects.filter(username=username).exists():
             return Response({"message":"Username already taken"})
         user = User.objects.create_user(username=username,password=password1)
-        user.save()    
+        user.save()
         return Response({"message":"User created"},status=201)
     else:
         return Response({"Error":"password is in correct"},status=401)
