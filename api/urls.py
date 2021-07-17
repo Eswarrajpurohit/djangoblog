@@ -11,5 +11,7 @@ urlpatterns = [
     path('apilogin/',views.apilogin,name='apilogin'),
     path('apisignup/',views.apisignup,name='apisignup'),
     path('apilike/',views.apilike,name='apilike'),
-    path('apicreate/',views.FileView.as_view(),name='apicreate')
+    path('apicreate/',views.FileView.as_view(),name='apicreate'),
+    path("testget/",views.getTest),
+    path("testput/",views.putTest)
 ]

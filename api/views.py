@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from rest_framework.response import Response
 from rest_framework.decorators import api_view,permission_classes
 from .serializers import contentSerializer
-from article.models import content
+from article.models import content,testModel
 
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login
@@ -14,6 +14,25 @@ from rest_framework import status
 
 
 # Create your views here.
+
+@api_view(['GET'])
+def putTest(request):
+    test = request.POST["test"]
+    testdata = testModel()
+    testdata.testField = test
+    testdata.save()
+    return Response({"message done":"ok"},status=201)
+
+
+@api_view(['GET'])
+def getTest(request):
+    test = testModel.objects.all()
+    m=[]
+    for t in test:
+        m.append({"testdata":t.testField})
+    return Response({"message done":m},status=201)
+
+
 
 @api_view(['GET'])
 def api(request):

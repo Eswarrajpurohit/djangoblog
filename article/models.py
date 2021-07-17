@@ -12,4 +12,6 @@ class content(models.Model):
 
     def __str__(self):
         return self.title
-        
+
+class testModel(models.Model):
+    testField = models.CharField(max_length=700000)
